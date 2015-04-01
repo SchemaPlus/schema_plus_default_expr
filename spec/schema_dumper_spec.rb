@@ -4,9 +4,6 @@ require 'stringio'
 describe "Schema dump" do
 
   before(:all) do
-    SchemaPlus::ForeignKeys.setup do |config|
-      config.auto_create = false
-    end
     ActiveRecord::Migration.suppress_messages do
       ActiveRecord::Schema.define do
         connection.tables.each do |table| drop_table table, force: :cascade end

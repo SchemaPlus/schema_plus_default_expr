@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ActiveRecord::Migration do
 
   before(:each) do
-    define_schema(:auto_create => true) do
+    define_schema do
       create_table :posts, :force => true do |t|
         t.string :content
       end

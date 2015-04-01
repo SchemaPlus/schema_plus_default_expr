@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Column definition" do
   before(:each) do
-    define_schema(:auto_create => true) do
+    define_schema do
       create_table :models, :force => true do |t|
       end
     end
