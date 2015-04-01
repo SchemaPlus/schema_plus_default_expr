@@ -8,8 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = SchemaPlus::DefaultExpr::VERSION
   gem.authors       = ["ronen barzel"]
   gem.email         = ["ronen@barzel.org"]
-  gem.summary       = %q{TODO: Write a short summary. Required.}
-  gem.description   = %q{TODO: Write a longer description. Optional.}
+  gem.summary       = %q{Extends ActiveRecord migrations to allow an SQL expression for the default value of a column}
   gem.homepage      = "https://github.com/SchemaPlus/schema_plus_default_expr"
   gem.license       = "MIT"
 

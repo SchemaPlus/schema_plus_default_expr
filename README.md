@@ -5,7 +5,9 @@
 
 # SchemaPlus::DefaultExpr
 
-TODO: Write a gem description
+SchemaPlus::DefaultExpr extends ActiveRecord's migrations to allow you to set the default value of a column to an SQL expression.   
+
+This gem works with PostgreSQL and Sqlite3, but not MySQL; see [Compatibility](#compatibility)below.
 
 SchemaPlus::DefaultExpr is part of the [SchemaPlus](https://github.com/SchemaPlus/) family of Ruby on Rails ActiveRecord extension gems.
 
@@ -22,7 +24,7 @@ gem.add_dependency "schema_plus_default_expr" # in a .gemspec
 
 <!-- SCHEMA_DEV: TEMPLATE INSTALLATION - end -->
 
-## Compatibility
+## <a name="compatibility"></a>Compatibility
 
 SchemaPlus::DefaultExpr is tested on:
 
@@ -32,13 +34,40 @@ SchemaPlus::DefaultExpr is tested on:
 
 <!-- SCHEMA_DEV: MATRIX - end -->
 
+MySQL only supports SQL expression defaults for `TIMESTAMP` column types, which ActiveRecord does not use.  So SchemaPlus::DefaultExpr does not work with MySQL.
+
 ## Usage
 
-TODO: Write usage instructions here
+SchemaPlus::DefaultExpr augments the syntax for setting column defaults, to support expressions or constant values:
+
+    t.datetime :seen_at, default: { expr: 'NOW()' }
+    t.datetime :seen_at, default: { value: "2011-12-11 00:00:00" }
+
+The standard syntax will still work as usual:
+
+    t.datetime :seen_at, default: "2011-12-11 00:00:00"
+
+Also, as a convenience
+
+    t.datetime :seen_at, default: :now
+
+resolves to:
+
+    NOW()                 # PostgreSQL
+    (DATETIME('now'))     # SQLite3
+    invalid               # MySQL
+
+### Note on PostgreSQL & json:
+
+If you are using Postgresql with a `json` column, ActiveRecord allows you to use a Hash for a default value.  Be aware that if the hash contains just one key which is `:expr` or `:value`, then SchemaPlus::DefaultExpr will interpret, and use the corresponding value for the default.  That is, these are equivalent:
+
+	t.json :fields, default: { value: { field1: 'a', field2: 'b' } }
+    t.json :fields, default: { field1: 'a', field2: 'b' }
+
 
 ## History
 
-* 0.1.0 - Initial release
+* 0.1.0 - Initial release, extracted from schema_plus 1.x
 
 ## Development & Testing
 
