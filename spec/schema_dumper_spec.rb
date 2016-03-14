@@ -34,7 +34,7 @@ describe "Schema dump" do
   context "with date default", :postgresql => :only do
     it "should dump the default hash expr as now()" do
       with_additional_column Post, :posted_at, :datetime, :default => :now do
-        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default =>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"now\(\)"\s*\}})
+        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default =>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"now\(\)"\s*\}\s*$})
       end
     end
 
