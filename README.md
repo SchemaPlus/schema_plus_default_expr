@@ -67,6 +67,7 @@ If you are using Postgresql with a `json` column, ActiveRecord allows you to use
 
 ## History
 
+* 0.1.1 - Fix dumping bug (#1); upgrade to schema_plus_core 1.0
 * 0.1.0 - Initial release, extracted from schema_plus 1.x
 
 ## Development & Testing
