@@ -42,9 +42,7 @@ module SchemaPlus::DefaultExpr
           env.connection.columns(env.table.name).each do |column|
             if !column.default_function.nil?
               if col = env.table.columns.find(&its.name == column.name)
-                options = "default: { expr: #{column.default_function.inspect} }"
-                options += ", #{col.options}" unless col.options.blank?
-                col.options = options
+                col.options[:default] = { expr: column.default_function }
               end
             end
           end

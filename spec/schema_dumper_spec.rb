@@ -34,13 +34,13 @@ describe "Schema dump" do
   context "with date default", :postgresql => :only do
     it "should dump the default hash expr as now()" do
       with_additional_column Post, :posted_at, :datetime, :default => :now do
-        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default =>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"now\(\)"\s*\}\s*$})
+        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default\s*=>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"now\(\)"\s*\}\s*$})
       end
     end
 
     it "should dump the default hash expr as CURRENT_TIMESTAMP" do
       with_additional_column Post, :posted_at, :datetime, :default => {:expr => 'date \'2001-09-28\''} do
-        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default =>).*2001-09-28.*})
+        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default\s*=>).*2001-09-28.*})
       end
     end
 
@@ -54,19 +54,19 @@ describe "Schema dump" do
   context "with date default", :sqlite3 => :only do
     it "should dump the default hash expr as now" do
       with_additional_column Post, :posted_at, :datetime, :default => :now do
-        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default =>)\s*\{\s*(?:expr:|:expr =>)\s*"\(DATETIME\('now'\)\)"\s*\}})
+        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(default:|:default\s*=>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"\(DATETIME\('now'\)\)"\s*\}})
       end
     end
 
     it "should dump the default hash expr string as now" do
       with_additional_column Post, :posted_at, :datetime, :default => { :expr => "(DATETIME('now'))" } do
-        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(?:default:|:default =>)\s*\{\s*(?:expr:|:expr =>)\s*"\(DATETIME\('now'\)\)"\s*\}})
+        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(default:|:default\s*=>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"\(DATETIME\('now'\)\)"\s*\}})
       end
     end
 
     it "should dump the default value normally" do
       with_additional_column Post, :posted_at, :string, :default => "now" do
-        expect(dump_posts).to match(%r{t\.string\s*"posted_at",\s*(?:default:|:default =>)\s*"now"})
+        expect(dump_posts).to match(%r{t\.string\s*"posted_at",\s*(?:default:|:default\s*=>)\s*"now"})
       end
     end
   end
