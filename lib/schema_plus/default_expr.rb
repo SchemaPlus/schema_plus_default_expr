@@ -1,4 +1,5 @@
 require 'schema_plus/core'
+require 'its-it'
 
 require_relative 'default_expr/version'
 require_relative 'default_expr/middleware'
