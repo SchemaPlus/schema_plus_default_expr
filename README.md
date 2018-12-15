@@ -70,6 +70,7 @@ If you are using Postgresql with a `json` column, ActiveRecord allows you to use
 
 ## History
 
+* 0.1.5 - Compatibility with AR 5.2.
 * 0.1.4 - Compatibility with AR 5.  Thanks to [@pedantic-git](https://github.com/pedantic-git)
 * 0.1.3 - Missing require
 * 0.1.2 - Explicit gem dependencies
