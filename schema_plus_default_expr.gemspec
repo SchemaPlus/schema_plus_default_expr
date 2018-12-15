@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "activerecord", ">= 4.2", "< 6.0"
-  gem.add_dependency "schema_plus_core", ">= 1.0", "< 3.0"
+  gem.add_dependency "schema_plus_core"
   gem.add_dependency "its-it", "~> 1.2"
 
   gem.add_development_dependency "bundler", "~> 1.7"
