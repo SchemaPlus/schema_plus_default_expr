@@ -43,16 +43,22 @@ MySQL only supports SQL expression defaults for `TIMESTAMP` column types, which 
 
 SchemaPlus::DefaultExpr augments the syntax for setting column defaults, to support expressions or constant values:
 
-    t.datetime :seen_at, default: { expr: 'NOW()' }
-    t.datetime :seen_at, default: { value: "2011-12-11 00:00:00" }
+```ruby
+t.datetime :seen_at, default: { expr: 'NOW()' }
+t.datetime :seen_at, default: { value: "2011-12-11 00:00:00" }
+```
 
 The standard syntax will still work as usual:
 
-    t.datetime :seen_at, default: "2011-12-11 00:00:00"
+```ruby
+t.datetime :seen_at, default: "2011-12-11 00:00:00"
+```
 
 Also, as a convenience
 
-    t.datetime :seen_at, default: :now
+```ruby
+t.datetime :seen_at, default: :now
+```
 
 resolves to:
 
@@ -64,9 +70,10 @@ resolves to:
 
 If you are using Postgresql with a `json` column, ActiveRecord allows you to use a Hash for a default value.  Be aware that if the hash contains just one key which is `:expr` or `:value`, then SchemaPlus::DefaultExpr will interpret, and use the corresponding value for the default.  That is, these are equivalent:
 
-	t.json :fields, default: { value: { field1: 'a', field2: 'b' } }
-    t.json :fields, default: { field1: 'a', field2: 'b' }
-
+```ruby
+t.json :fields, default: { value: { field1: 'a', field2: 'b' } }
+t.json :fields, default: { field1: 'a', field2: 'b' }
+```
 
 ## History
 
