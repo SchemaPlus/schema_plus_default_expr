@@ -1,18 +1,8 @@
 require 'spec_helper'
 
 describe "Column definition" do
-  def stub_model(name, base = ActiveRecord::Base, &block)
-    klass = Class.new(base)
-
-    if block_given?
-      klass.instance_eval(&block)
-    end
-
-    stub_const(name, klass)
-  end
-
   before(:each) do
-    define_schema do
+    apply_migration do
       create_table :models, :force => true do |t|
       end
     end
@@ -125,8 +115,8 @@ describe "Column definition" do
   private
 
   def define_test_column(type, **options)
-    ActiveRecord::Migration.suppress_messages do
-      ActiveRecord::Migration.create_table Model.table_name, :force => true do |t|
+    apply_migration do
+      create_table Model.table_name, :force => true do |t|
         t.send type, :test_column, **options
         t.integer :dummy
       end
