@@ -37,7 +37,7 @@ describe ActiveRecord::Migration do
 
   def recreate_table(model, opts={}, &block)
     ActiveRecord::Migration.suppress_messages do
-      ActiveRecord::Migration.create_table model.table_name, opts.merge(:force => true), &block
+      ActiveRecord::Migration.create_table model.table_name, **opts.merge(:force => true), &block
     end
     model.reset_column_information
   end
