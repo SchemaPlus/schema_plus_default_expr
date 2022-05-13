@@ -77,12 +77,13 @@ t.json :fields, default: { field1: 'a', field2: 'b' }
 
 ## History
 
-* 0.1.5 - Compatibility with AR 5.2.
-* 0.1.4 - Compatibility with AR 5.  Thanks to [@pedantic-git](https://github.com/pedantic-git)
-* 0.1.3 - Missing require
-* 0.1.2 - Explicit gem dependencies
-* 0.1.1 - Fix dumping bug (#1); upgrade to schema_plus_core 1.0
-* 0.1.0 - Initial release, extracted from schema_plus 1.x
+* **1.0.0** - Add AR 6.0, Ruby 3.0 and dropped AR < 5.2 and Ruby < 5.2
+* **0.1.5** - Compatibility with AR 5.2.
+* **0.1.4** - Compatibility with AR 5.  Thanks to [@pedantic-git](https://github.com/pedantic-git)
+* **0.1.3** - Missing require
+* **0.1.2** - Explicit gem dependencies
+* **0.1.1** - Fix dumping bug (#1); upgrade to schema_plus_core 1.0
+* **0.1.0** - Initial release, extracted from schema_plus 1.x
 
 ## Development & Testing
 
