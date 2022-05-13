@@ -50,13 +50,13 @@ describe "Schema dump" do
 
     it "should dump the default hash expr as now" do
       with_additional_column model, :posted_at, :datetime, :default => :now do
-        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(default:|:default\s*=>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"\(DATETIME\('now'\)\)"\s*\}})
+        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(default:|:default\s*=>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"\(?DATETIME\('now'\)\)?"\s*\}})
       end
     end
 
     it "should dump the default hash expr string as now" do
       with_additional_column model, :posted_at, :datetime, :default => { :expr => "(DATETIME('now'))" } do
-        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(default:|:default\s*=>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"\(DATETIME\('now'\)\)"\s*\}})
+        expect(dump_posts).to match(%r{t\.datetime\s+"posted_at",\s*(default:|:default\s*=>)\s*\{\s*(?:expr:|:expr\s*=>)\s*"\(?DATETIME\('now'\)\)?"\s*\}})
       end
     end
 
