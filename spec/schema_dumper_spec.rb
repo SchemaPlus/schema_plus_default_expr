@@ -78,6 +78,30 @@ describe "Schema dump" do
     expect(dump_posts).to match(%r{t\.datetime\s+"date_column"$})
   end
 
+  context 'setting a column default' do
+    before do
+      apply_migration do
+        create_table :posts, :force => true do |t|
+          t.datetime :other, default: { expr: :now }
+          t.datetime :date_column
+        end
+      end
+    end
+
+    it 'updates the schema when changing the default' do
+      model.create
+
+      pp model.all
+
+      apply_migration do
+        change_column_null :posts, :date_column, false, Time.current
+        change_column_default :posts, :date_column, default: { expr: :now }
+      end
+
+      pp model.all
+    end
+  end
+
   protected
 
   def to_regexp(string)
