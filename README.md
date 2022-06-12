@@ -85,6 +85,7 @@ t.json :fields, default: { field1: 'a', field2: 'b' }
 
 ## History
 
+* **1.0.1** - Add AR 6.1, 7.0 and Ruby 3.1
 * **1.0.0** - Add AR 6.0, Ruby 3.0 and dropped AR < 5.2 and Ruby < 5.2
 * **0.1.5** - Compatibility with AR 5.2.
 * **0.1.4** - Compatibility with AR 5.  Thanks to [@pedantic-git](https://github.com/pedantic-git)
